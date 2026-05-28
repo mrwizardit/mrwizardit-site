@@ -1,0 +1,170 @@
+/* Core Reset & AZ Cyber-Sunset Variables */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace, system-ui;
+}
+
+:root {
+    --bg-black: #06020f;         /* Deepest Desert Midnight */
+    --midnight-purple: #1b0a2a;  /* High-Velocity Midnight Purple */
+    --sunset-orange: #ff5e3a;    /* Electric Horizon Orange */
+    --solar-gold: #ffb703;       /* High-Voltage Sunset Yellow / Gold */
+    --dark-surface: #12051c;     /* Terminal Box Shadow Layer */
+    --text-primary: #fff2e6;     /* Off-White with a warm sunset tint */
+    --text-muted: #8c7291;       /* Dusty Desert Sage / Purple shadow */
+}
+
+body {
+    background-color: var(--bg-black);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    position: relative;
+    /* Soft vertical ambient sunset glow rising from the bottom */
+    background: linear-gradient(180deg, var(--bg-black) 60%, #17051c 85%, #2a082c 100%);
+}
+
+/* Cyber Ambient Grid Background (Shifted to Sunset Orange/Purple) */
+.cyber-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(255, 94, 58, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 94, 58, 0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Navigation Terminal */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
+    border-bottom: 1px solid rgba(255, 94, 58, 0.15);
+    background: rgba(6, 2, 15, 0.85);
+    backdrop-filter: blur(12px);
+}
+
+.logo {
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: var(--sunset-orange);
+    letter-spacing: 2px;
+    text-shadow: 0 0 12px rgba(255, 94, 58, 0.4);
+}
+
+nav a {
+    color: var(--text-muted);
+    text-decoration: none;
+    margin-left: 2rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+nav a:hover, nav a.active {
+    color: var(--solar-gold);
+    text-shadow: 0 0 10px rgba(255, 183, 3, 0.6);
+}
+
+/* Main Display */
+main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+}
+
+#terminal-view {
+    max-width: 800px;
+}
+
+.matrix-loader {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    margin-bottom: 1rem;
+}
+
+h1 {
+    font-size: 3.5rem;
+    font-weight: 900;
+    letter-spacing: -1px;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    /* Sunset gradient cut right into the text */
+    background: linear-gradient(45deg, var(--sunset-orange), var(--solar-gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 8px rgba(255, 94, 58, 0.3));
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+    max-width: 600px;
+}
+
+/* Interactive Cyber Button (Sunset Themes) */
+.cyber-btn {
+    background: transparent;
+    color: var(--sunset-orange);
+    border: 1px solid var(--sunset-orange);
+    padding: 1rem 2rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(255, 94, 58, 0.1);
+}
+
+.cyber-btn:hover {
+    background: linear-gradient(135deg, var(--sunset-orange), #e03e1b);
+    color: var(--bg-black);
+    border-color: transparent;
+    box-shadow: 0 0 30px rgba(255, 94, 58, 0.5);
+    transform: translateY(-2px);
+}
+
+/* Footer & Status Check */
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    border-top: 1px solid rgba(27, 10, 42, 0.5);
+}
+
+.status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--solar-gold);
+}
+
+.ping-dot {
+    width: 6px;
+    height: 6px;
+    background-color: var(--solar-gold);
+    border-radius: 50%;
+    display: inline-block;
+    box-shadow: 0 0 8px var(--solar-gold);
+}
