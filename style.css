@@ -1,4 +1,4 @@
-/* Load Custom Logo Font */
+/* --- Fonts --- */
 @font-face {
     font-family: 'VegaPunk';
     src: url('fonts/VegaPunk.ttf') format('truetype');
@@ -6,22 +6,21 @@
     font-style: normal;
 }
 
-/* Load JetBrains Mono (Standard Variable) */
 @font-face {
-    font-family: 'JetBrains Mono'; /* Restored the space so your body tag still works */
-    src: url('fonts/JetBrainsMono.ttf') format('truetype'); /* Stripped the ./ */
+    font-family: 'JetBrains Mono';
+    src: url('fonts/JetBrainsMono.ttf') format('truetype');
     font-weight: 100 900; 
     font-style: normal;
 }
 
-/* Load JetBrains Mono (Italic Variable) */
 @font-face {
-    font-family: 'JetBrains Mono'; /* Matches the standard name exactly */
-    src: url('fonts/JetBrainsMono-Italic.ttf') format('truetype'); /* Stripped the ./ */
+    font-family: 'JetBrains Mono';
+    src: url('fonts/JetBrainsMono-Italic.ttf') format('truetype');
     font-weight: 100 900;
-    font-style: italic; /* This tells the browser to use this specific file when italics are needed */
+    font-style: italic;
 }
-/* Core Reset & AZ Cyber-Sunset Variables */
+
+/* --- Core Variables & Reset --- */
 * {
     margin: 0;
     padding: 0;
@@ -47,10 +46,9 @@ body {
     overflow-x: hidden;
     position: relative;
     background: linear-gradient(180deg, var(--bg-black) 60%, #17051c 85%, #2a082c 100%);
-    /* Calling the local JetBrains font */
     font-family: 'JetBrains Mono', 'Courier New', monospace;
 }
-/* Cyber Ambient Grid Background (Shifted to Sunset Orange/Purple) */
+
 .cyber-grid {
     position: absolute;
     top: 0;
@@ -65,10 +63,35 @@ body {
     pointer-events: none;
 }
 
-/* --- Navigation Terminal (3-Column Desktop Grid) --- */
+/* --- Typography --- */
+h1 {
+    font-size: 3.5rem;
+    font-weight: 400; 
+    letter-spacing: 0px; 
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(45deg, var(--sunset-orange), var(--solar-gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 8px rgba(255, 94, 58, 0.3));
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+    max-width: 600px;
+}
+
+.text-muted {
+    color: var(--text-muted);
+}
+
+/* --- Header & Navigation --- */
 header {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr; /* Forces 3 perfectly equal columns */
+    grid-template-columns: 1fr 1fr 1fr;
     align-items: center;
     padding: 2rem;
     border-bottom: 1px solid rgba(255, 94, 58, 0.15);
@@ -77,9 +100,8 @@ header {
 }
 
 .logo {
-    grid-column: 1; /* Locks into the LEFT third */
-    justify-self: center; /* Centers the logo within that left column */
-    
+    grid-column: 1;
+    justify-self: center;
     font-family: 'VegaPunk', sans-serif;
     font-size: 2.7rem;
     letter-spacing: 2.4px;
@@ -89,11 +111,28 @@ header {
     filter: drop-shadow(0 0 12px rgba(255, 94, 58, 0.4));
 }
 
+.header-mark {
+    grid-column: 2; 
+    justify-self: center;
+    
+    /* 1. INCREASE THIS VALUE (Was 75px) */
+    height: 115px; 
+    
+    width: auto;
+    filter: drop-shadow(0 0 12px rgba(255, 94, 58, 0.4)); 
+    transition: transform 0.3s ease;
+    clip-path: inset(0px 0px 0px 2px); 
+}
+
+.header-mark:hover {
+    transform: scale(1.05); 
+}
+
 nav {
-    grid-column: 3; /* Locks into the RIGHT third */
+    grid-column: 3;
     display: flex;
-    justify-content: center; /* Centers the links within that right column */
-    gap: 2rem; /* Using gap instead of margins for perfect mathematical centering */
+    justify-content: center; 
+    gap: 2rem; 
 }
 
 nav a {
@@ -109,41 +148,20 @@ nav a:hover, nav a.active {
     text-shadow: 0 0 10px rgba(255, 183, 3, 0.6);
 }
 
-/* --- Responsive Mobile Layout --- */
-@media (max-width: 1000px) {
-    header {
-        display: flex; /* Overrides the 3-column grid on small screens */
-        flex-direction: column;
-        justify-content: center;
-        gap: 1.5rem;
-        padding: 1.5rem;
-    }
-
-    .logo {
-        justify-self: auto;
-    }
-
-    nav {
-        flex-wrap: wrap;
-        gap: 1.5rem; /* Keeps links spaced evenly when stacked */
-    }
-}
-/* Main Display */
-/* --- Main Display (Centered Middle Column) --- */
+/* --- Main Content Layout --- */
 main {
     flex: 1;
     display: flex;
     flex-direction: column; 
-    align-items: center; /* Keeps sections anchored in the middle */
-    
-    max-width: 900px; /* Constrains the width to match the middle third aesthetic */
+    align-items: center; 
+    max-width: 900px; 
     width: 100%;
     margin: 0 auto;
     padding: 4rem 2rem;
 }
 
-#terminal-view, #services-view {
-    width: 100%; /* Ensures the text flows completely edge-to-edge inside the 900px column */
+#terminal-view, #services-view, #contact-view {
+    width: 100%; 
 }
 
 .matrix-loader {
@@ -153,28 +171,7 @@ main {
     margin-bottom: 1rem;
 }
 
-h1 {
-    font-size: 3.5rem;
-    font-weight: 400; /* Dropped from 900 for that sleek, non-bold terminal look */
-    letter-spacing: 0px; /* Reset the spacing so the thinner letters don't squish */
-    line-height: 1.1;
-    margin-bottom: 1.5rem;
-    /* Sunset gradient cut right into the text */
-    background: linear-gradient(45deg, var(--sunset-orange), var(--solar-gold));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 2px 8px rgba(255, 94, 58, 0.3));
-}
-
-.subtitle {
-    font-size: 1.1rem;
-    color: var(--text-muted);
-    line-height: 1.7;
-    margin-bottom: 2.5rem;
-    max-width: 600px;
-}
-
-/* Interactive Cyber Button (Sunset Themes) */
+/* --- Buttons --- */
 .cyber-btn {
     background: transparent;
     color: var(--sunset-orange);
@@ -197,33 +194,25 @@ h1 {
     transform: translateY(-2px);
 }
 
-/* Footer & Status Check */
-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5rem 2rem;
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    border-top: 1px solid rgba(27, 10, 42, 0.5);
+.terminal-inline-btn {
+    background: transparent;
+    border: none;
+    color: var(--sunset-orange);
+    font-family: inherit;
+    font-size: inherit;
+    cursor: pointer;
+    padding: 0;
+    text-decoration: underline;
+    font-weight: bold;
+    transition: color 0.2s ease;
 }
 
-.status-indicator {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+.terminal-inline-btn:hover {
     color: var(--solar-gold);
+    text-shadow: 0 0 8px rgba(255, 183, 3, 0.4);
 }
 
-.ping-dot {
-    width: 6px;
-    height: 6px;
-    background-color: var(--solar-gold);
-    border-radius: 50%;
-    display: inline-block;
-    box-shadow: 0 0 8px var(--solar-gold);
-}
-/* Services Section Layout */
+/* --- Services Grid --- */
 .section-block {
     width: 100%;
     padding-top: 4rem;
@@ -256,7 +245,6 @@ footer {
     overflow: hidden;
 }
 
-/* Subtle border glow on hover */
 .service-card:hover {
     border-color: var(--sunset-orange);
     transform: translateY(-4px);
@@ -269,24 +257,26 @@ footer {
     filter: drop-shadow(0 0 8px var(--sunset-orange));
 }
 
-.service-card h3 {
+.service-card h2, .service-card h3, .service-card h4 {
     font-size: 1.2rem;
     color: var(--text-primary);
     margin-bottom: 0.75rem;
     letter-spacing: 0.5px;
+    font-weight: 400; /* Keeps service headings matching the sleek aesthetic */
 }
 
 .service-card p {
     font-size: 0.9rem;
     color: var(--text-muted);
     line-height: 1.6;
-    margin-bottom: 0; /* Clear bottom margin inside cards */
+    margin-bottom: 0; 
 }
-/* Terminal Contact Module */
+
+/* --- Terminal Module --- */
 .terminal-container {
     width: 100%;
     max-width: 650px;
-    background-color: #0c0517; /* High-density midnight purple shade */
+    background-color: #0c0517; 
     border: 1px solid rgba(255, 94, 58, 0.2);
     border-radius: 6px;
     overflow: hidden;
@@ -344,26 +334,7 @@ footer {
     color: var(--solar-gold);
 }
 
-/* Inline Terminal Button Element */
-.terminal-inline-btn {
-    background: transparent;
-    border: none;
-    color: var(--sunset-orange);
-    font-family: inherit;
-    font-size: inherit;
-    cursor: pointer;
-    padding: 0;
-    text-decoration: underline;
-    font-weight: bold;
-    transition: color 0.2s ease;
-}
-
-.terminal-inline-btn:hover {
-    color: var(--solar-gold);
-    text-shadow: 0 0 8px rgba(255, 183, 3, 0.4);
-}
-
-/* Terminal Cursor Animation (Fixed for Gradient Text) */
+/* --- Animations --- */
 .blink {
     animation: blink-cursor 1s step-end infinite;
 }
@@ -372,29 +343,54 @@ footer {
     0%, 100% { visibility: visible; }
     50% { visibility: hidden; }
 }
-/* --- Responsive Mobile Layout --- */
-@media (max-width: 850px) {
+
+/* --- Footer --- */
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    border-top: 1px solid rgba(27, 10, 42, 0.5);
+}
+
+.status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--solar-gold);
+}
+
+.ping-dot {
+    width: 6px;
+    height: 6px;
+    background-color: var(--solar-gold);
+    border-radius: 50%;
+    display: inline-block;
+    box-shadow: 0 0 8px var(--solar-gold);
+}
+
+/* --- Responsive Layout --- */
+@media (max-width: 1000px) {
     header {
-        flex-direction: column; /* Stacks the logo and nav vertically */
+        display: flex; 
+        flex-direction: column;
         justify-content: center;
-        gap: 1.5rem; /* Creates clean space between the two rows */
+        gap: 1.5rem;
         padding: 1.5rem;
     }
 
     .logo {
-        position: static; /* Detaches it from absolute positioning */
-        transform: none;  /* Clears the math shift we used for desktop */
-        text-align: center;
+        justify-self: auto;
+    }
+
+    .header-mark {
+        height: 55px; 
     }
 
     nav {
-        display: flex;
         flex-wrap: wrap;
-        justify-content: center;
-        gap: 1.5rem; /* Spaces out the links evenly */
-    }
-
-    nav a {
-        margin-left: 0; /* Strips the hard left margin so they center perfectly */
+        gap: 1.5rem; 
     }
 }
