@@ -227,3 +227,83 @@ footer {
     line-height: 1.6;
     margin-bottom: 0; /* Clear bottom margin inside cards */
 }
+/* Terminal Contact Module */
+.terminal-container {
+    width: 100%;
+    max-width: 650px;
+    background-color: #0c0517; /* High-density midnight purple shade */
+    border: 1px solid rgba(255, 94, 58, 0.2);
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(6, 2, 15, 0.7), 0 0 20px rgba(255, 94, 58, 0.03);
+    margin: 2rem 0;
+}
+
+.terminal-bar {
+    background-color: #120722;
+    padding: 0.6rem 1rem;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 94, 58, 0.1);
+    position: relative;
+}
+
+.terminal-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 6px;
+    display: inline-block;
+}
+.terminal-dot.close { background-color: #ff5f56; opacity: 0.6; }
+.terminal-dot.minimize { background-color: #ffbd2e; opacity: 0.6; }
+.terminal-dot.expand { background-color: #27c93f; opacity: 0.6; }
+
+.terminal-title {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    letter-spacing: 1px;
+}
+
+.terminal-body {
+    padding: 1.5rem;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.log-line {
+    margin-bottom: 0.5rem;
+}
+
+.terminal-input-line {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 1.5rem;
+}
+
+.terminal-prompt {
+    color: var(--solar-gold);
+}
+
+/* Inline Terminal Button Element */
+.terminal-inline-btn {
+    background: transparent;
+    border: none;
+    color: var(--sunset-orange);
+    font-family: inherit;
+    font-size: inherit;
+    cursor: pointer;
+    padding: 0;
+    text-decoration: underline;
+    font-weight: bold;
+    transition: color 0.2s ease;
+}
+
+.terminal-inline-btn:hover {
+    color: var(--solar-gold);
+    text-shadow: 0 0 8px rgba(255, 183, 3, 0.4);
+}
