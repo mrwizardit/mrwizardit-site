@@ -168,3 +168,62 @@ footer {
     display: inline-block;
     box-shadow: 0 0 8px var(--solar-gold);
 }
+/* Services Section Layout */
+.section-block {
+    width: 100%;
+    padding-top: 4rem;
+    border-top: 1px dashed rgba(255, 94, 58, 0.15);
+    margin-top: 4rem;
+}
+
+.section-header {
+    font-size: 0.85rem;
+    color: var(--solar-gold);
+    letter-spacing: 3px;
+    margin-bottom: 2rem;
+    font-weight: bold;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.service-card {
+    background-color: var(--dark-surface);
+    border: 1px solid rgba(140, 114, 145, 0.2);
+    padding: 2rem;
+    border-radius: 4px;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Subtle border glow on hover */
+.service-card:hover {
+    border-color: var(--sunset-orange);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(255, 94, 58, 0.08);
+}
+
+.card-icon {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    filter: drop-shadow(0 0 8px var(--sunset-orange));
+}
+
+.service-card h3 {
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.5px;
+}
+
+.service-card p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 0; /* Clear bottom margin inside cards */
+}
