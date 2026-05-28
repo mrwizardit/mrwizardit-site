@@ -1,25 +1,25 @@
 /* Load Custom Logo Font */
 @font-face {
     font-family: 'VegaPunk';
-    src: url('./fonts/VegapunkFree-K7xJe.ttf') format('truetype');
+    src: url('fonts/VegaPunk.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 
 /* Load JetBrains Mono (Standard Variable) */
 @font-face {
-    font-family: 'JetBrains Mono';
-    src: url('./fonts/JetBrainsMono-VariableFont_wght.ttf') format('truetype');
-    font-weight: 100 900; /* Supports the full variable weight range */
+    font-family: 'JetBrains Mono'; /* Restored the space so your body tag still works */
+    src: url('fonts/JetBrainsMono.ttf') format('truetype'); /* Stripped the ./ */
+    font-weight: 100 900; 
     font-style: normal;
 }
 
 /* Load JetBrains Mono (Italic Variable) */
 @font-face {
-    font-family: 'JetBrains Mono';
-    src: url('./fonts/JetBrainsMono-Italic-VariableFont_wght.ttf') format('truetype');
+    font-family: 'JetBrains Mono'; /* Matches the standard name exactly */
+    src: url('fonts/JetBrainsMono-Italic.ttf') format('truetype'); /* Stripped the ./ */
     font-weight: 100 900;
-    font-style: italic;
+    font-style: italic; /* This tells the browser to use this specific file when italics are needed */
 }
 /* Core Reset & AZ Cyber-Sunset Variables */
 * {
