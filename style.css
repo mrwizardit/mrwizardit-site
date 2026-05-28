@@ -1,9 +1,31 @@
+/* Load Custom Logo Font */
+@font-face {
+    font-family: 'VegaPunk';
+    src: url('./fonts/VegapunkFree-K7xJe.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Load JetBrains Mono (Standard Variable) */
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url('./fonts/JetBrainsMono-VariableFont_wght.ttf') format('truetype');
+    font-weight: 100 900; /* Supports the full variable weight range */
+    font-style: normal;
+}
+
+/* Load JetBrains Mono (Italic Variable) */
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url('./fonts/JetBrainsMono-Italic-VariableFont_wght.ttf') format('truetype');
+    font-weight: 100 900;
+    font-style: italic;
+}
 /* Core Reset & AZ Cyber-Sunset Variables */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Courier New', Courier, monospace, system-ui;
 }
 
 :root {
@@ -24,10 +46,10 @@ body {
     flex-direction: column;
     overflow-x: hidden;
     position: relative;
-    /* Soft vertical ambient sunset glow rising from the bottom */
     background: linear-gradient(180deg, var(--bg-black) 60%, #17051c 85%, #2a082c 100%);
+    /* Calling the local JetBrains font */
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
 }
-
 /* Cyber Ambient Grid Background (Shifted to Sunset Orange/Purple) */
 .cyber-grid {
     position: absolute;
@@ -43,10 +65,10 @@ body {
     pointer-events: none;
 }
 
-/* Navigation Terminal */
+/* --- Navigation Terminal (3-Column Desktop Grid) --- */
 header {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; /* Forces 3 perfectly equal columns */
     align-items: center;
     padding: 2rem;
     border-bottom: 1px solid rgba(255, 94, 58, 0.15);
@@ -55,17 +77,28 @@ header {
 }
 
 .logo {
-    font-size: 1.4rem;
-    font-weight: 900;
-    color: var(--sunset-orange);
-    letter-spacing: 2px;
-    text-shadow: 0 0 12px rgba(255, 94, 58, 0.4);
+    grid-column: 1; /* Locks into the LEFT third */
+    justify-self: center; /* Centers the logo within that left column */
+    
+    font-family: 'VegaPunk', sans-serif;
+    font-size: 2.7rem;
+    letter-spacing: 2.4px;
+    background: linear-gradient(45deg, var(--solar-gold), var(--sunset-orange));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 12px rgba(255, 94, 58, 0.4));
+}
+
+nav {
+    grid-column: 3; /* Locks into the RIGHT third */
+    display: flex;
+    justify-content: center; /* Centers the links within that right column */
+    gap: 2rem; /* Using gap instead of margins for perfect mathematical centering */
 }
 
 nav a {
     color: var(--text-muted);
     text-decoration: none;
-    margin-left: 2rem;
     font-size: 0.9rem;
     font-weight: bold;
     transition: all 0.3s ease;
@@ -76,19 +109,41 @@ nav a:hover, nav a.active {
     text-shadow: 0 0 10px rgba(255, 183, 3, 0.6);
 }
 
+/* --- Responsive Mobile Layout --- */
+@media (max-width: 1000px) {
+    header {
+        display: flex; /* Overrides the 3-column grid on small screens */
+        flex-direction: column;
+        justify-content: center;
+        gap: 1.5rem;
+        padding: 1.5rem;
+    }
+
+    .logo {
+        justify-self: auto;
+    }
+
+    nav {
+        flex-wrap: wrap;
+        gap: 1.5rem; /* Keeps links spaced evenly when stacked */
+    }
+}
 /* Main Display */
+/* --- Main Display (Centered Middle Column) --- */
 main {
     flex: 1;
     display: flex;
-    align-items: center;
-    max-width: 1100px;
+    flex-direction: column; 
+    align-items: center; /* Keeps sections anchored in the middle */
+    
+    max-width: 900px; /* Constrains the width to match the middle third aesthetic */
     width: 100%;
     margin: 0 auto;
     padding: 4rem 2rem;
 }
 
-#terminal-view {
-    max-width: 800px;
+#terminal-view, #services-view {
+    width: 100%; /* Ensures the text flows completely edge-to-edge inside the 900px column */
 }
 
 .matrix-loader {
@@ -100,8 +155,8 @@ main {
 
 h1 {
     font-size: 3.5rem;
-    font-weight: 900;
-    letter-spacing: -1px;
+    font-weight: 400; /* Dropped from 900 for that sleek, non-bold terminal look */
+    letter-spacing: 0px; /* Reset the spacing so the thinner letters don't squish */
     line-height: 1.1;
     margin-bottom: 1.5rem;
     /* Sunset gradient cut right into the text */
@@ -306,4 +361,40 @@ footer {
 .terminal-inline-btn:hover {
     color: var(--solar-gold);
     text-shadow: 0 0 8px rgba(255, 183, 3, 0.4);
+}
+
+/* Terminal Cursor Animation (Fixed for Gradient Text) */
+.blink {
+    animation: blink-cursor 1s step-end infinite;
+}
+
+@keyframes blink-cursor {
+    0%, 100% { visibility: visible; }
+    50% { visibility: hidden; }
+}
+/* --- Responsive Mobile Layout --- */
+@media (max-width: 850px) {
+    header {
+        flex-direction: column; /* Stacks the logo and nav vertically */
+        justify-content: center;
+        gap: 1.5rem; /* Creates clean space between the two rows */
+        padding: 1.5rem;
+    }
+
+    .logo {
+        position: static; /* Detaches it from absolute positioning */
+        transform: none;  /* Clears the math shift we used for desktop */
+        text-align: center;
+    }
+
+    nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1.5rem; /* Spaces out the links evenly */
+    }
+
+    nav a {
+        margin-left: 0; /* Strips the hard left margin so they center perfectly */
+    }
 }
