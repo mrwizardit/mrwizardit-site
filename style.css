@@ -1,31 +1,10 @@
 /* --- Fonts --- */
-@font-face {
-    font-family: 'VegaPunk';
-    src: url('fonts/VegaPunk.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
+@font-face { font-family: 'VegaPunk'; src: url('fonts/VegaPunk.ttf'); }
+@font-face { font-family: 'JetBrains Mono'; src: url('fonts/JetBrainsMono.ttf'); font-weight: 100 900; }
+@font-face { font-family: 'JetBrains Mono'; src: url('fonts/JetBrainsMono-Italic.ttf'); font-weight: 100 900; font-style: italic; }
 
-@font-face {
-    font-family: 'JetBrains Mono';
-    src: url('fonts/JetBrainsMono.ttf') format('truetype');
-    font-weight: 100 900; 
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'JetBrains Mono';
-    src: url('fonts/JetBrainsMono-Italic.ttf') format('truetype');
-    font-weight: 100 900;
-    font-style: italic;
-}
-
-/* --- Core Variables & Reset --- */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+/* --- Core Reset & Variables --- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
     --bg-black: #06020f;
@@ -38,376 +17,107 @@
 }
 
 body {
-    background-color: var(--bg-black);
+    background: linear-gradient(180deg, var(--bg-black) 60%, #17051c 85%, #2a082c 100%);
     color: var(--text-primary);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    font-family: 'JetBrains Mono', monospace;
     overflow-x: hidden;
-    position: relative;
-    background: linear-gradient(180deg, var(--bg-black) 60%, #17051c 85%, #2a082c 100%);
-    font-family: 'JetBrains Mono', 'Courier New', monospace;
 }
 
 .cyber-grid {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: 
-        linear-gradient(rgba(255, 94, 58, 0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 94, 58, 0.04) 1px, transparent 1px);
+    position: absolute; width: 100%; height: 100%; z-index: -1;
+    background-image: linear-gradient(rgba(255, 94, 58, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 94, 58, 0.04) 1px, transparent 1px);
     background-size: 40px 40px;
-    z-index: -1;
-    pointer-events: none;
 }
 
-/* --- Typography --- */
-h1 {
-    font-size: 3.5rem;
-    font-weight: 400; 
-    letter-spacing: 0px; 
-    line-height: 1.1;
-    margin-bottom: 1.5rem;
-    background: linear-gradient(45deg, var(--sunset-orange), var(--solar-gold));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 2px 8px rgba(255, 94, 58, 0.3));
-}
-
-.subtitle {
-    font-size: 1.1rem;
-    color: var(--text-muted);
-    line-height: 1.7;
-    margin-bottom: 2.5rem;
-    max-width: 600px;
-}
-
-.text-muted {
-    color: var(--text-muted);
-}
-
-/* --- Header & Navigation --- */
+/* --- Fixed Header --- */
 header {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    align-items: center;
-    padding: 2rem;
-    
-    /* Remove background and blur for full transparency */
-    background: transparent;
-    backdrop-filter: none;
-    
-    /* Keep the thin border to maintain structural anchoring */
-    border-bottom: 1px solid rgba(255, 94, 58, 0.15);
-    
-    /* Keep centering constraints */
     max-width: 1200px;
-    margin: 0 auto;
-    width: 100%;
-}
-
-.brand-group {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    padding-left: 1rem; /* Gently pulls it off the far left */
-}
-
-/* Ensure the nav doesn't hit the right edge */
-nav {
-    justify-self: end;
-    display: flex;
-    gap: 2rem;
-    padding-right: 1rem; /* Gently pulls it off the far right */
-}
-
-
-.logo {
-    font-family: 'VegaPunk', sans-serif;
-    font-size: 2.7rem;
-    letter-spacing: 2.4px;
-    
-    /* These three lines are what create the gradient effect */
-    background: linear-gradient(45deg, var(--solar-gold), var(--sunset-orange));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    
-    /* Adds the ambient glow back */
-    filter: drop-shadow(0 0 12px rgba(255, 94, 58, 0.4));
-}
-
-.header-mark {
-    height: 75px; /* Adjust to desired size */
-    width: auto;
-    /* ... rest of your mark styles ... */
-}
-
-nav {
-    justify-self: end; /* Pins nav to the far right */
-    display: flex;
-    gap: 2rem;
-}
-
-/* Gradient Navigation Links */
-nav a {
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: bold;
-    transition: all 0.3s ease;
-    background: linear-gradient(45deg, var(--solar-gold), var(--sunset-orange));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-nav a:hover {
-    text-shadow: 0 0 15px rgba(255, 183, 3, 0.6);
-    transform: translateY(-2px);
-}
-/* --- Main Content Layout --- */
-main {
-    flex: 1;
-    display: flex;
-    flex-direction: column; 
-    align-items: center; 
-    max-width: 900px; 
-    width: 100%;
-    margin: 0 auto;
-    padding: 4rem 2rem;
-}
-
-#terminal-view, #services-view, #contact-view {
-    width: 100%; 
-}
-
-.matrix-loader {
-    color: var(--text-muted);
-    font-size: 0.8rem;
-    letter-spacing: 3px;
-    margin-bottom: 1rem;
-}
-
-/* --- Buttons --- */
-.cyber-btn {
-    background: transparent;
-    color: var(--sunset-orange);
-    border: 1px solid var(--sunset-orange);
+    margin: 1rem auto;
+    width: calc(100% - 2rem);
     padding: 1rem 2rem;
-    font-size: 0.9rem;
-    font-weight: bold;
-    letter-spacing: 2px;
-    cursor: pointer;
-    position: relative;
-    transition: all 0.3s ease;
-    box-shadow: 0 0 15px rgba(255, 94, 58, 0.1);
-}
-
-.cyber-btn:hover {
-    background: linear-gradient(135deg, var(--sunset-orange), #e03e1b);
-    color: var(--bg-black);
-    border-color: transparent;
-    box-shadow: 0 0 30px rgba(255, 94, 58, 0.5);
-    transform: translateY(-2px);
-}
-
-.terminal-inline-btn {
-    background: transparent;
-    border: none;
-    color: var(--sunset-orange);
-    font-family: inherit;
-    font-size: inherit;
-    cursor: pointer;
-    padding: 0;
-    text-decoration: underline;
-    font-weight: bold;
-    transition: color 0.2s ease;
-}
-
-.terminal-inline-btn:hover {
-    color: var(--solar-gold);
-    text-shadow: 0 0 8px rgba(255, 183, 3, 0.4);
-}
-
-/* --- Services Grid --- */
-.section-block {
-    width: 100%;
-    padding-top: 4rem;
-    border-top: 1px dashed rgba(255, 94, 58, 0.15);
-    margin-top: 4rem;
-}
-
-.section-header {
-    font-size: 0.85rem;
-    color: var(--solar-gold);
-    letter-spacing: 3px;
-    margin-bottom: 2rem;
-    font-weight: bold;
-}
-
-.services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    width: 100%;
-}
-
-.service-card {
-    background-color: var(--dark-surface);
-    border: 1px solid rgba(140, 114, 145, 0.2);
-    padding: 2rem;
-    border-radius: 4px;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    position: relative;
-    overflow: hidden;
-}
-
-.service-card:hover {
-    border-color: var(--sunset-orange);
-    transform: translateY(-4px);
-    box-shadow: 0 10px 30px rgba(255, 94, 58, 0.08);
-}
-
-.card-icon {
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
-    filter: drop-shadow(0 0 8px var(--sunset-orange));
-}
-
-.service-card h2, .service-card h3, .service-card h4 {
-    font-size: 1.2rem;
-    color: var(--text-primary);
-    margin-bottom: 0.75rem;
-    letter-spacing: 0.5px;
-    font-weight: 400; /* Keeps service headings matching the sleek aesthetic */
-}
-
-.service-card p {
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    line-height: 1.6;
-    margin-bottom: 0; 
-}
-
-/* --- Terminal Module --- */
-.terminal-container {
-    width: 100%;
-    max-width: 650px;
-    background-color: #0c0517; 
-    border: 1px solid rgba(255, 94, 58, 0.2);
-    border-radius: 6px;
-    overflow: hidden;
-    box-shadow: 0 15px 40px rgba(6, 2, 15, 0.7), 0 0 20px rgba(255, 94, 58, 0.03);
-    margin: 2rem 0;
-}
-
-.terminal-bar {
-    background-color: #120722;
-    padding: 0.6rem 1rem;
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid rgba(255, 94, 58, 0.1);
-    position: relative;
-}
-
-.terminal-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    margin-right: 6px;
-    display: inline-block;
-}
-.terminal-dot.close { background-color: #ff5f56; opacity: 0.6; }
-.terminal-dot.minimize { background-color: #ffbd2e; opacity: 0.6; }
-.terminal-dot.expand { background-color: #27c93f; opacity: 0.6; }
-
-.terminal-title {
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    letter-spacing: 1px;
-}
-
-.terminal-body {
-    padding: 1.5rem;
-    font-size: 0.9rem;
-    line-height: 1.6;
-}
-
-.log-line {
-    margin-bottom: 0.5rem;
-}
-
-.terminal-input-line {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-top: 1.5rem;
-}
-
-.terminal-prompt {
-    color: var(--solar-gold);
-}
-
-/* --- Animations --- */
-.blink {
-    animation: blink-cursor 1s step-end infinite;
-}
-
-@keyframes blink-cursor {
-    0%, 100% { visibility: visible; }
-    50% { visibility: hidden; }
-}
-
-/* --- Footer --- */
-footer {
+    background-color: #0c0517;
+    border-radius: 8px;
+    /* Single clean gradient border */
+    border: 1px solid var(--sunset-orange);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.5rem 2rem;
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    border-top: 1px solid rgba(27, 10, 42, 0.5);
 }
 
-.status-indicator {
+.brand-group { display: flex; align-items: center; gap: 1.5rem; }
+.logo { 
+    font-family: 'VegaPunk', sans-serif; font-size: 2.7rem; letter-spacing: 2.4px;
+    background: linear-gradient(45deg, var(--solar-gold), var(--sunset-orange));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 12px rgba(255, 94, 58, 0.4));
+}
+.header-mark { 
+    height: 60px; 
+    width: auto; 
+    transition: 0.4s; 
+    display: block;      /* Ensures no extra line-height spacing */
+    border: none;        /* Kills any potential browser default border */
+    outline: none;       /* Kills focus outlines */
+    background: none;    /* Removes any residual background color */
+}
+
+/* Add this wrapper fix */
+.home-link {
     display: flex;
     align-items: center;
-    gap: 8px;
-    color: var(--solar-gold);
+    filter: drop-shadow(0 0 10px rgba(255, 94, 58, 0.3)); /* Moved here */
 }
 
-.ping-dot {
-    width: 6px;
-    height: 6px;
-    background-color: var(--solar-gold);
-    border-radius: 50%;
-    display: inline-block;
-    box-shadow: 0 0 8px var(--solar-gold);
+nav { display: flex; gap: 2rem; }
+nav a { 
+    text-decoration: none; font-size: 1.1rem; font-weight: bold;
+    background: linear-gradient(45deg, var(--solar-gold), var(--sunset-orange));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    transition: 0.3s;
 }
+nav a:hover { filter: drop-shadow(0 0 8px var(--solar-gold)); transform: translateY(-2px); }
 
-/* --- Responsive Layout --- */
+/* --- Typography --- */
+h1 { font-size: 3.5rem; font-weight: 400; line-height: 1.1; margin-bottom: 1.5rem; background: linear-gradient(45deg, var(--sunset-orange), var(--solar-gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 2px 8px rgba(255, 94, 58, 0.3)); }
+.subtitle { font-size: 1.1rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 2.5rem; max-width: 600px; }
+.text-muted { color: var(--text-muted); }
+
+/* --- Main Layout --- */
+main { flex: 1; display: flex; flex-direction: column; align-items: center; max-width: 900px; width: 100%; margin: 0 auto; padding: 4rem 2rem; }
+.section-block { width: 100%; padding-top: 4rem; border-top: 1px dashed rgba(255, 94, 58, 0.15); margin-top: 4rem; }
+.section-header { font-size: 0.85rem; color: var(--solar-gold); letter-spacing: 3px; margin-bottom: 2rem; font-weight: bold; }
+
+/* --- Services Grid --- */
+.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; width: 100%; }
+.service-card { background-color: var(--dark-surface); border: 1px solid rgba(140, 114, 145, 0.2); padding: 2rem; border-radius: 4px; transition: 0.3s; }
+.service-card:hover { border-color: var(--sunset-orange); transform: translateY(-4px); box-shadow: 0 10px 30px rgba(255, 94, 58, 0.08); }
+.card-icon { font-size: 1.8rem; margin-bottom: 1rem; filter: drop-shadow(0 0 8px var(--sunset-orange)); }
+.service-card h2, .service-card h3, .service-card h4 { font-size: 1.2rem; color: var(--text-primary); margin-bottom: 0.75rem; font-weight: 400; }
+.service-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
+
+/* --- Terminal Module --- */
+.terminal-container { width: 100%; max-width: 650px; background-color: #0c0517; border: 1px solid rgba(255, 94, 58, 0.2); border-radius: 6px; box-shadow: 0 15px 40px rgba(6, 2, 15, 0.7); margin: 2rem 0; }
+.terminal-bar { background-color: #120722; padding: 0.6rem 1rem; display: flex; align-items: center; border-bottom: 1px solid rgba(255, 94, 58, 0.1); }
+.terminal-dot { width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; }
+.terminal-dot.close { background-color: #ff5f56; } .terminal-dot.minimize { background-color: #ffbd2e; } .terminal-dot.expand { background-color: #27c93f; }
+.terminal-body { padding: 1.5rem; }
+.terminal-inline-btn { background: none; border: none; color: var(--sunset-orange); cursor: pointer; text-decoration: underline; font-weight: bold; }
+
+/* --- Buttons & Footer --- */
+.cyber-btn { background: transparent; color: var(--sunset-orange); border: 1px solid var(--sunset-orange); padding: 1rem 2rem; cursor: pointer; transition: 0.3s; }
+.cyber-btn:hover { background: var(--sunset-orange); color: var(--bg-black); }
+footer { display: flex; justify-content: space-between; padding: 2rem; border-top: 1px solid rgba(27, 10, 42, 0.5); font-size: 0.75rem; color: var(--text-muted); }
+
+/* --- Animations --- */
+.blink { animation: blink-cursor 1s step-end infinite; }
+@keyframes blink-cursor { 50% { visibility: hidden; } }
+
+/* --- Responsive --- */
 @media (max-width: 1000px) {
-    header {
-        display: flex; 
-        flex-direction: column;
-        justify-content: center;
-        gap: 1.5rem;
-        padding: 1.5rem;
-    }
-
-    .logo {
-        justify-self: auto;
-    }
-
-    .header-mark {
-        height: 55px; 
-    }
-
-    nav {
-        flex-wrap: wrap;
-        gap: 1.5rem; 
-    }
+    header { flex-direction: column; gap: 1rem; padding: 1rem; }
+    .header-mark { height: 50px; }
+    nav { gap: 1rem; flex-wrap: wrap; justify-content: center; }
 }
